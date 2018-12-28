@@ -316,7 +316,7 @@ class Model:
         print('Finished Testing')
 
 
-def main(args):
+def main():
     args = return_arguments()
     if args.mode == 'train':
         model = Model(args)
