@@ -19,22 +19,31 @@ mpl.rcParams['figure.figsize'] = (15, 10)
 def return_arguments():
     parser = argparse.ArgumentParser(description='PyTorch Monodepth')
 
-    parser.add_argument('data_dir',
+    parser.add_argument('--data_dir',
                         help='path to the dataset folder. \
-                        It should contain subfolders with following structure:\
-                        "image_02/data" for left images and \
-                        "image_03/data" for right images'
-                        )
-    parser.add_argument('val_data_dir',
-                        help='path to the validation dataset folder. \
                             It should contain subfolders with following structure:\
                             "image_02/data" for left images and \
                             "image_03/data" for right images'
+                        , default="/home/datasets/kitti/2011/2011_09_26/"
                         )
-    parser.add_argument('model_path', help='path to the trained model')
-    parser.add_argument('output_directory',
+    parser.add_argument('--val_data_dir',
+                        help='path to the validation dataset folder. \
+                                It should contain subfolders with following structure:\
+                                "image_02/data" for left images and \
+                                "image_03/data" for right images',
+                        default="/home/datasets/kitti/2011/2011_09_28/"
+                        )
+    parser.add_argument('--model_path', help='path to the trained model',
+                        default="/home/a.gabdullin/geesara/wakemeup/model")
+    parser.add_argument('--output_directory',
                         help='where save dispairities\
-                        for tested images'
+                            for tested images',
+                        default="/home/a.gabdullin/geesara/wakemeup/result"
+                        )
+    parser.add_argument('--output_image_directory',
+                        help='where save dispairities\
+                                for tested images',
+                        default="/home/a.gabdullin/geesara/wakemeup/images"
                         )
     parser.add_argument('--input_height', type=int, help='input height',
                         default=256)
@@ -54,7 +63,7 @@ def return_arguments():
                         help='number of total epochs to run')
     parser.add_argument('--learning_rate', default=1e-4,
                         help='initial learning rate (default: 1e-4)')
-    parser.add_argument('--batch_size', default=256,
+    parser.add_argument('--batch_size', default=32,
                         help='mini-batch size (default: 256)')
     parser.add_argument('--adjust_lr', default=True,
                         help='apply learning rate decay or not\
